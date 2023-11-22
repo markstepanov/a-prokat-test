@@ -20,11 +20,11 @@ app.use(express.static("frontend/dist"))
 
 
 app.post("/webhook", (req, res) => {
-    const hmac = crypto.createHmac("md5", "97a0d22c9ad154abb460037b6201b126922ba38d")
-    hmac.setEncoding("base64")
-    hmac.write(req.headers["X-Hook-Signature"])
-    hmac.end()
-    console.log(hmac.read())
+    const hash = crypto.createHmac("md5", "97a0d22c9ad154abb460037b6201b126922ba38d")
+    .update(req.headers["x-hook-signature"]).digest("hex")
+    console.log(hash)
+
+    
 
     res.end()
 })
