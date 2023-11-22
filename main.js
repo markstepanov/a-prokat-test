@@ -19,7 +19,7 @@ app.use((err, req, res, next) => {
 app.use(express.static("frontend/dist"))
 
 app.post("/webhook",  (req, res) => {
-    const hmac = crypto.createHmac( 'md5', "97a0d22c9ad154abb460037b6201b126922ba38d");
+    const hmac = crypto.createHmac( 'md5', "jqwpPojwfe2");
           hmac.setEncoding('base64');
           hmac.write( req.body.toString() );
           hmac.end();
