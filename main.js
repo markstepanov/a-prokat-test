@@ -18,38 +18,14 @@ app.use((err, req, res, next) => {
 
 app.use(express.static("frontend/dist"))
 
-function calculateSignature(key) {
-    return function(req, res, next) {
-        var hash = req.header("x-hook-signature"),
-            hmac = crypto.createHmac("md5", key);
-
-        req.on("data", function(data) {
-            hmac.update(data);
-        });
-
-        req.on("end", function() {
-            var crypted = hmac.digest("hex");
-
-            if(crypto.timingSafeEqual(
-              Buffer.from(crypted),
-              Buffer.from(hash.padEnd(crypted.length))
-            )) {
-                // Valid request
-                return res.send("Success!", { "Content-Type": "text/plain" });
-            } else {
-                // Invalid request
-                return res.send("Invalid TrialPay hash", { "Content-Type": "text/plain" }, 403);
-            }
-        });
-
-        req.on("error", function(err) {
-            return next(err);
-        });
-    }
-}
-
-app.post("/webhook", calculateSignature("97a0d22c9ad154abb460037b6201b126922ba38d"), (req, res) => {
-    console.log("here!")
+app.post("/webhook",  (req, res) => {
+    const hmac = crypto.createHmac( 'md5', "97a0d22c9ad154abb460037b6201b126922ba38d");
+          hmac.setEncoding('base64');
+          hmac.write( req.body.toString() );
+          hmac.end();
+    const signature = hmac.read();
+    console.log(signature, req.headers["x-hook-signature"])
+    
 
     res.end()
 })
