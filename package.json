@@ -1,0 +1,19 @@
+{
+  "name": "a-prokat",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "app": "node main.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bp-api": "^0.6.2",
+    "express": "^4.18.2"
+  },
+  "devDependencies": {
+    "eslint": "^8.54.0"
+  }
+}
