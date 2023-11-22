@@ -4,6 +4,7 @@ const port = 8000
 
 const BP = require("bp-api").default
 const bp = new BP("test-a-prokat-mark.bpium.ru", "markstepanov88@gmail.com", "ifjqw!fwheio32", "https", 3000)
+const crypto = require("crypto")
 
 
 
@@ -19,9 +20,12 @@ app.use(express.static("frontend/dist"))
 
 
 app.post("/webhook", (req, res) => {
-    console.log(req.headers)
-    console.log("===================")
-    console.log(req.body)
+    const hmac = crypto.createHmac("md5", "97a0d22c9ad154abb460037b6201b126922ba38d")
+    hmac.setEncoding("base64")
+    hmac.write(req.headers["X-Hook-Signature"])
+    hmac.end()
+    console.log(hmac.read())
+
     res.end()
 })
 
