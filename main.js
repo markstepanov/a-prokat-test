@@ -19,6 +19,8 @@ app.use(express.static("frontend/dist"))
 
 
 app.post("/webhook", (req, res) => {
+    console.log(req.headers)
+    console.log("===================")
     console.log(req.body)
     res.end()
 })
