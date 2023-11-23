@@ -20,8 +20,8 @@ app.use(cors())
 
 
 
-app.post("/webhook-update-comment", webhooks.updateCommentWebhook)
-app.post("/webhook-create-warehouse-record", webhooks.createWarehouseRecordWebhook)
+app.post("/webhook-update-comment", middlewares.webhookAuthMiddleware,webhooks.updateCommentWebhook)
+app.post("/webhook-create-warehouse-record", middlewares.webhookAuthMiddleware, webhooks.createWarehouseRecordWebhook)
 
 app.get("/order", api.recordGET)
 app.post("/order", api.recordPOST)

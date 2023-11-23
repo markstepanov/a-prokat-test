@@ -1,11 +1,17 @@
 const crypto = require("crypto")
 
-    // const hmac = crypto.createHmac( 'md5', "jqwpPojwfe2");
-    //       hmac.setEncoding('base64');
-    //       hmac.write( req.body.toString() );
-    //       hmac.end();
-    // const signature = hmac.read();
-    // console.log(signature, req.headers["x-hook-signature"])
+
+const webhookAuthMiddleware = (req, res, next) => {
+
+    const hmac = crypto.createHmac( 'md5', "jqwpPojwfe2");
+          hmac.setEncoding('base64');
+          hmac.write( req.body.toString() );
+          hmac.end();
+    const signature = hmac.read();
+    console.log(signature, req.headers["x-hook-signature"])
+    next()
+
+}
 
 
 const jsonParseExeptionMiddleWare = (err, req, res, next) => {
@@ -17,5 +23,6 @@ const jsonParseExeptionMiddleWare = (err, req, res, next) => {
 }
 
 module.exports = {
-    jsonParseExeptionMiddleWare
+    jsonParseExeptionMiddleWare,
+    webhookAuthMiddleware
 }
