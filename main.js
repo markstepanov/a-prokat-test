@@ -18,14 +18,15 @@ app.use((err, req, res, next) => {
 
 app.use(express.static("frontend/dist"))
 
+
 app.post("/webhook",  (req, res) => {
-    const hmac = crypto.createHmac( 'md5', "jqwpPojwfe2");
-          hmac.setEncoding('base64');
-          hmac.write( req.body.toString() );
-          hmac.end();
-    const signature = hmac.read();
-    console.log(signature, req.headers["x-hook-signature"])
-    
+    // const hmac = crypto.createHmac( 'md5', "jqwpPojwfe2");
+    //       hmac.setEncoding('base64');
+    //       hmac.write( req.body.toString() );
+    //       hmac.end();
+    // const signature = hmac.read();
+    // console.log(signature, req.headers["x-hook-signature"])
+    console.log(req.body)
 
     res.end()
 })
