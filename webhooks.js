@@ -25,7 +25,12 @@ const updateCommentWebhook = async (req, res) => {
     res.end()
 }
 
+const createWarehouseRecordWebhook = async (req, res) => {
+    console.log(req.body)
+    res.end()
+}
 
 module.exports = {
-    updateCommentWebhook
+    updateCommentWebhook,
+    createWarehouseRecordWebhook
 }

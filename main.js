@@ -15,7 +15,8 @@ app.use(express.static("frontend/dist"))
 
 
 
-app.post("/webhook", webhooks.updateCommentWebhook)
+app.post("/webhook-update-comment", webhooks.updateCommentWebhook)
+app.post("/webhook-create-warehouse-record", webhooks.createWarehouseRecordWebhook)
 
 
 app.listen(port,async ()=> {
