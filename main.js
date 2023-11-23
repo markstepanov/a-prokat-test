@@ -26,7 +26,17 @@ app.post("/webhook",  (req, res) => {
     //       hmac.end();
     // const signature = hmac.read();
     // console.log(signature, req.headers["x-hook-signature"])
-    console.log(req.body)
+    if (req.body.hook.event != "record.updated"){
+        return res.status(406).json({
+            message: "This webhook process only 'record.update' queries"
+        })
+    }
+
+    const values = req.body.payload.values
+    const prevValues = req.body.payload.prevValues
+
+    console.log(values, prevValues)
+
 
     res.end()
 })
