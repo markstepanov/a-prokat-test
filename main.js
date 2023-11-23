@@ -4,7 +4,6 @@ const port = 8000
 
 
 const middlewares = require("./middleware")
-const cors = require("cors")
 
 const api = require("./api")
 const webhooks = require("./webhooks")
@@ -16,7 +15,6 @@ const webhooks = require("./webhooks")
 app.use(express.json())
 app.use(middlewares.jsonParseExeptionMiddleWare);
 app.use(express.static("frontend/dist/spa"))
-app.use(cors())
 
 
 
