@@ -5,6 +5,9 @@ const WAREHOUSE_CATEGORY_ID = 14
 
 
 async function test() {
+    await bp.postRecord(ORDER_CATEGORY_ID, {
+        '3': "test post"
+    })
 }
 
 

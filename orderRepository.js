@@ -17,6 +17,26 @@ const updateOrderComment = async (orderId) => {
 }
 
 
+/** 
+ * @throws {Error}
+ */
+const getAllOrders = async () => {
+    return await bp.getAllRecords(13)
+}
+
+
+
+/** 
+ * @throws {Error}
+ */
+const createOrder = async (comment) => {
+    await bp.postRecord(ORDER_CATEGORY_ID, {'3': comment})
+}
+
+
 module.exports = {
-    updateOrderComment
+    updateOrderComment,
+    getAllOrders,
+    createOrder
+
 }
