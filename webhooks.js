@@ -1,4 +1,5 @@
 const orderRepository = require("./orderRepository")
+const warehouseRepository = require("./warehouseRepository")
 
 const updateCommentWebhook = async (req, res) => {
     if (req.body.hook.event != "record.updated"){
@@ -26,7 +27,10 @@ const updateCommentWebhook = async (req, res) => {
 }
 
 const createWarehouseRecordWebhook = async (req, res) => {
-    console.log(req.body)
+    const recordId = req.body.payload.recordId 
+    const comment= req.body.payload.values['3']
+    console.log(recordId, comment)
+    // warehouseRepository.createWarehouseRecord()
     res.end()
 }
 

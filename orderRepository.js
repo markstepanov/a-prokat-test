@@ -1,5 +1,4 @@
-const BP = require("bp-api").default
-const bp = new BP("test-a-prokat-mark.bpium.ru", "markstepanov88@gmail.com", "ifjqw!fwheio32", "https", 3000)
+const bp = require("./bp").bp
 const utils = require("./utils")
 
 const ORDER_CATEGORY_ID = 13
