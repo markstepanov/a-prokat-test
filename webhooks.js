@@ -29,8 +29,15 @@ const updateCommentWebhook = async (req, res) => {
 const createWarehouseRecordWebhook = async (req, res) => {
     const recordId = req.body.payload.recordId 
     const comment= req.body.payload.values['3']
-    console.log(recordId, comment)
-    // warehouseRepository.createWarehouseRecord()
+
+    try  {
+        await warehouseRepository.createWarehouseRecord(recordId, comment)
+    } catch (e) {
+        return res.status(406).json({
+            message: "Could not create Warehouse record"
+        })
+    }
+
     res.end()
 }
 
